@@ -1,0 +1,49 @@
+---------
+PURPOSE
+---------
+
+Build a webapp that tests the performance of data structures in the Java
+Collections framework.
+
+---------
+UI LAYER
+---------
+
+The UI layer's primary component is a graph. This will plot the input size
+against the time it takes to execute a given action.
+
+Graph - Some JavaScript graph API.
+    Y-axis: Time of execution
+    X-axis: Input size
+
+Input - Standard HTML. Dropdowns for collections and operations. A number
+field for input size n.
+
+Submit - Standard HTML. A submit button.
+
+---------
+REST LAYER
+---------
+
+The REST layer will require a few endpoints.
+
+POST api/collection/test/
+
+The payload will contain the collection, operation, and inputSize. Returns
+the results of the tests with input from 1 to n.
+
+GET api/collections
+
+A service to return the collections available for test.
+
+GET api/operations
+
+A service to return the operations available for test.
+
+-----------
+DESIGN NOTES
+-----------
+
+Testing Collections --
+
+Need to map each operation to a method. We need to put this info somewhere. Maybe a properties file?

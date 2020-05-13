@@ -1,0 +1,10 @@
+.idea
+.settings
+.vscode
+target/
+.DS_STORE
+node_modules
+bower_components
+out/
+bin/
+.class

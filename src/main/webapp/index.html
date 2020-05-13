@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title> Collection Performance </title>
+    <script src="bower_components/chart.js/dist/Chart.js"></script>
+    <link rel="stylesheet" href="src/main.css">
+</head>
+<body>
+    <div class="container">
+        <canvas id="chart"></canvas>
+        <form>
+
+            <div>
+                <p>Collection:</p>
+                <select id="collections"></select>
+            </div>
+
+            <div>
+                <p>Operation:</p>
+                <select id="operations"></select>
+            </div>
+
+            <div>
+                <p>Input Size:</p>
+                <input id="inputSize" type="number" value="1" min="1" max="1000"/>
+            </div>
+
+            <div>
+                <input  id="submit" type="submit" value="Submit"/>
+            </div>
+
+        </form>
+    </div>
+</body>
+<script src="src/main.js"></script>
+</html>
