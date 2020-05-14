@@ -23,6 +23,10 @@ import org.json.JSONObject;
 @WebServlet(urlPatterns = {"/api/collection/test"})
 public class PerformanceTestServlet extends HttpServlet {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     private Logger logger;
     private PerformanceTestImpl impl;
 

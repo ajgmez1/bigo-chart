@@ -1,7 +1,6 @@
 package com.ajgmez.model;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +33,10 @@ public class Collection {
 
     public Object getObject() throws Exception {
         return this.newInstance();
+    }
+
+    public Map<String, MethodAndParams> getMethods() {
+        return methods;
     }
 
     public MethodAndParams getMethodAndParams(String m) {
