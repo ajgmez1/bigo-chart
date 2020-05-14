@@ -1,22 +1,20 @@
 package com.ajgmez.servlet;
 
-import com.ajgmez.impl.PerformanceTestImpl;
-import org.json.JSONObject;
-import org.xml.sax.SAXException;
+import java.io.IOException;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
+
+import com.ajgmez.impl.PerformanceTestImpl;
+
+import org.json.JSONObject;
 
 /**
  * Created by gumz11 on 6/17/17.
@@ -34,8 +32,9 @@ public class PerformanceTestServlet extends HttpServlet {
 
         try {
             this.impl = new PerformanceTestImpl();
-        } catch (IOException | ParserConfigurationException | SAXException e) {
+        } catch (Exception e) {
             logger.log(Level.INFO, e.toString());
+            e.printStackTrace();
         }
     }
 
@@ -44,21 +43,17 @@ public class PerformanceTestServlet extends HttpServlet {
         // Parse JSON
         JSONObject jsonObject = getJsonObject(req);
 
-        // Create the collection
-        Object collection = createTheCollection(jsonObject.get("collection").toString());
-
         // Perform the operation
         Map<Integer, Long> results = null;
         try {
-            results = impl.test(collection,
-                    jsonObject.get("operation").toString(),
-                    Integer.parseInt(jsonObject.get("inputSize").toString()));
-        } catch (NoSuchMethodException | IllegalAccessException | ClassNotFoundException e) {
+            results = impl.test(
+                jsonObject.get("collection").toString(),
+                jsonObject.get("operation").toString(),
+                Integer.parseInt(jsonObject.get("inputSize").toString()));
+        } catch (Exception e) {
             logger.log(Level.INFO, e.toString());
             resp.sendError(422, e.toString());
-        } catch (InvocationTargetException e) {
-            logger.log(Level.INFO, e.getCause().toString());
-            resp.sendError(422, e.getCause().toString());
+            e.printStackTrace();
         }
 
         // Return results
@@ -70,20 +65,6 @@ public class PerformanceTestServlet extends HttpServlet {
         logger.log(Level.INFO, String.format("Request: %s", json));
 
         return new JSONObject(json);
-    }
-
-    private Object createTheCollection(String className) {
-        Object c = null;
-
-        try {
-            Class<?> cls = Class.forName("java.util." + className);
-            Constructor<?> constructor = cls.getConstructor();
-            c = constructor.newInstance();
-        } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
-
-        return c;
     }
 
 }

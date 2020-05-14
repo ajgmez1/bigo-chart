@@ -42,6 +42,22 @@
                 data: [{x:1, y:2}, {x:2, y:3}],
                 borderColor: 'rgb(41, 109, 171)'
             }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Nanoseconds'
+                    }
+                }],
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Input size'
+                    }
+                }]
+            }     
         }
     });
 

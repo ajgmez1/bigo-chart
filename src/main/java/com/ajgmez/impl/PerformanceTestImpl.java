@@ -1,21 +1,26 @@
 package com.ajgmez.impl;
 
-import com.ajgmez.enums.Operation;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import com.ajgmez.enums.Operation;
+import com.ajgmez.model.Collection;
+import com.ajgmez.model.MethodAndParams;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 /**
  * Created by gumz11 on 6/23/17.
@@ -23,91 +28,99 @@ import java.util.Random;
 public class PerformanceTestImpl {
 
     private final String XML_FILE = "/collectionProperties.xml";
-    private Document xmlFile;
+    private Logger logger;
+    private Map<String, Collection> collections;
     private Method method;
     private Class<?>[] params;
 
-    public PerformanceTestImpl() throws IOException, SAXException, ParserConfigurationException {
+    public PerformanceTestImpl() throws Exception {
+        this.logger = Logger.getAnonymousLogger();
+
         InputStream file = getClass().getResourceAsStream(this.XML_FILE);
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = dbf.newDocumentBuilder();
-        this.xmlFile = db.parse(file);
+
+        this.collections = this.parseCollectionProperties(db.parse(file));
     }
 
-    public Map<Integer, Long> test(Object collection, String operation, int inputSize) throws NoSuchMethodException, InvocationTargetException, ClassNotFoundException, IllegalAccessException {
-        Map<Integer, Long> results = new HashMap<>();
+    private Map<String, Collection> parseCollectionProperties(Document file) throws Exception {
+        NodeList collectionsList = file.getElementsByTagName("collection");
+        Map<String, Collection> collections = new HashMap<>();
 
-        if (!operation.equals(Operation.Insertion.name())) {
-            this.setMethod(collection, Operation.Insertion.name());
-            this.run(collection, inputSize);
-        }
+        for (int i = 0; i < collectionsList.getLength(); i++) {
+            Element c = (Element) collectionsList.item(i);
+            NodeList methodList = c.getElementsByTagName("method");
+            List<MethodAndParams> methods = new ArrayList<>();
 
-        this.setMethod(collection, operation);
-
-        for (int i = 1; i <= inputSize; i++) {
-            results.put(i, this.run(collection, i));
-        }
-
-        return results;
-    }
-
-    private void setMethod(Object collection, String operation) throws NoSuchMethodException, ClassNotFoundException {
-        Element e = this.xmlFile.getElementById(collection.getClass().getSimpleName());
-        NodeList methodList = e.getElementsByTagName("method");
-
-        Element m;
-        String methodName;
-        NodeList params;
-
-        for (int j = 0; j < methodList.getLength(); j++) {
-            m = (Element) methodList.item(j);
-
-            if (m.getElementsByTagName("type").item(0).getTextContent().equals(operation)) {
-                methodName = m.getElementsByTagName("value").item(0).getTextContent();
-                params = m.getElementsByTagName("paramsValue");
-                this.params = new Class<?>[params.getLength()];
+            for (int j = 0; j < methodList.getLength(); j++) {
+                Element m = (Element) methodList.item(j);
+                String type = m.getElementsByTagName("type").item(0).getTextContent();
+                String methodName = m.getElementsByTagName("value").item(0).getTextContent();
+                NodeList params = m.getElementsByTagName("paramsValue");
+                Class<?>[] classParams = new Class<?>[params.getLength()];
 
                 for (int k = 0; k < params.getLength(); k++) {
                     try {
-                        this.params[k] = (Class<?>) Class.forName(params.item(k).getTextContent()).getField("TYPE").get(null);
-                    } catch(NoSuchFieldException | IllegalAccessException ex) {
-                        this.params[k] = Class.forName(params.item(k).getTextContent());
+                        classParams[k] = (Class<?>) Class.forName(params.item(k).getTextContent()).getField("TYPE").get(null);
+                    } catch (Exception e) {
+                        classParams[k] = Class.forName(params.item(k).getTextContent());
                     }
                 }
-
-                this.method = collection.getClass().getDeclaredMethod(methodName, this.params);
+                methods.add(new MethodAndParams(type, methodName, classParams));
             }
+            String name = c.getAttributes().getNamedItem("id").getNodeValue();
+            collections.put(name, new Collection(name, methods));
         }
+        
+        return collections;
     }
 
-    private long run(Object collection, int i) throws InvocationTargetException, IllegalAccessException {
-        Random random = new Random();
-        long start, total = 0;
+    public Map<Integer, Long> test(String collection, String operation, int inputSize) throws Exception {
+        Map<Integer, Long> results = new HashMap<>();
 
-        for (int j = 1; j <= i; j++) {
-
-            if (this.params.length == 0) {
-
-                start = System.nanoTime();
-                this.method.invoke(collection);
-                total += System.nanoTime() - start;
-
-            } else if (this.params.length == 1) {
-
-                start = System.nanoTime();
-                this.method.invoke(collection, random.nextInt(i));
-                total += System.nanoTime() - start;
-
-            } else {
-
-                start = System.nanoTime();
-                this.method.invoke(collection, random.nextInt(), random.nextInt());
-                total += System.nanoTime() - start;
-
+        Collection c = collections.get(collection);
+        MethodAndParams mp = c.getMethodAndParams(operation);
+        Method method = mp.getMethod();
+        Object o = c.getObject();
+        
+        for (int i = 1; i <= inputSize; i++) {
+            // populate collection before testing
+            if (!operation.equals(Operation.Insertion.name())) {
+                Method insert = c.getMethodAndParams(Operation.Insertion.name()).getMethod();
+                this.run(o, insert, i);
             }
-
+            // run performance test
+            Method sizeM = c.getMethodAndParams("size").getMethod();
+            logger.log(Level.INFO, "size: " + sizeM.invoke(o).toString());
+            if (i % 100 == 0) {
+                results.put(i, this.run(o, method, i));
+            }   
         }
 
-        return total;
+        return this.filter(results);
+    }
+
+    private long run(Object collection, Method method, int inputSize) throws InvocationTargetException, IllegalAccessException {
+        Random random = new Random();
+        int params = method.getParameterCount();
+        Object []args = new Object[params];
+
+        for (int p = 0; p < params; p++) {
+            args[p] = random.nextInt(inputSize);
+        }
+    
+        long start = System.nanoTime();
+        method.invoke(collection, args);
+        return System.nanoTime() - start;
+    }
+
+    private Map<Integer, Long> filter(Map<Integer, Long> results) {
+        // TODO: filter outliers by standard deviation? 
+        // need to double check statistics...
+
+        // TODO: chart.js can only handle so many data points
+        // also figure out how to send fewer data points 
+        // for very large inputSize
+        return results;
     }
 }
