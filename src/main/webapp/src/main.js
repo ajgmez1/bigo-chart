@@ -9,7 +9,7 @@
     // Events
     collections.onchange = () => {
         if (operations.c) {
-            const values = Object.keys(operations.c[collections.value]);
+            const values = operations.c[collections.value].methods.map((m) => m.type);
             setSelect(operations, values);
         }
     };

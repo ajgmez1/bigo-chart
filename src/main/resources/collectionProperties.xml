@@ -41,12 +41,6 @@
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
             </method>
-            <method>
-                <type>size</type>
-                <value>size</value>
-                <params>
-                </params>
-            </method>
         </methods>
     </collection>
     <collection id="LinkedList">
