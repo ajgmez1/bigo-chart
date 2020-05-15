@@ -1,3 +1,7 @@
 .input-size {
   vertical-align: text-bottom;
 }
+
+#form-template {
+  display: none;
+}
