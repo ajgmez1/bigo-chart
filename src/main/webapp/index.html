@@ -6,8 +6,20 @@
     <link rel="stylesheet" href="src/main.css">
 </head>
 <body>
+    <header class="top-bar">
+        <div class="top-bar-left">
+          <ul class="dropdown menu" data-dropdown-menu>
+            <li class="menu-text">Collections Tester</li>
+        </ul>
+    </header>
     <div class="grid-container">
-        <div id="container">
+        <div class="grid-x">
+            <div class="cell">
+                <h3>Hello</h3>
+                <p> This is some information about the site. </p>
+            </div>
+        </div>
+        <div id="container" class="card">
             <form id="0" class="grid-x grid-padding-x">
                 <div class="cell medium-3">
                     <label>Collection</label>
@@ -24,23 +36,27 @@
                 <div class="cell medium-auto">
                     <label>Actions</label>
                     <div class="small button-group">
-                        <button name="submit" class="button small">Test</button>
-                        <button name="delete" class="alert button small">-</button>
+                        <button name="submit" class="button">Test</button>
+                        <button name="delete" class="alert button">-</button>
                     </div>
                 </div>
             </form>
         </div>
         <div class="grid-x">
             <div class="cell">
-                <button id="addForm" class="success button small">+</button>
+                <div class="small button-group">
+                    <button id="addForm" class="success button">+</button>
+                    <button id="addForm" class="button">Test all</button>
+                </div>
+                
             </div>
         </div>
         <div class="grid-x">
-            <div class="cell large-3">
-                <table id="table"></table> 
-                <div class="form-group">
-                    <label for="formControlRange">Input Size</label>
-                    <input type="range" class="form-control-range" name="inputSize" min="100000" max="10000000">
+            <div class="cell card large-3">
+                <div class="card-section">
+                    <table id="table"></table> 
+                    <label>Input Size</label>
+                    <input type="range" class="" name="inputSize" value="100000" min="100000" max="10000000">
                 </div>
             </div>
             <div class="cell large-auto">
