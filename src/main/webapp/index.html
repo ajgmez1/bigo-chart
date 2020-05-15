@@ -2,52 +2,52 @@
 <head>
     <title> Collection Performance </title>
     <script src="node_modules/chart.js/dist/Chart.min.js"></script>
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/foundation-sites/dist/css/foundation.min.css">
     <link rel="stylesheet" href="src/main.css">
 </head>
 <body>
-    <div class="container-xl">
+    <div class="grid-container">
         <div id="container">
-            <form id="0" class="row">
-                <div class="p-2">
+            <form id="0" class="grid-x grid-padding-x">
+                <div class="cell medium-3">
                     <label>Collection</label>
                     <select name="collections"></select>
                 </div>
-                <div class="p-2">
+                <div class="cell medium-2">
                     <label>Operation</label>
                     <select name="operations"></select>
                 </div>
-                <div class="p-2">
+                <div class="cell medium-2">
                     <label>Color</label>
                     <input name="color" type="color" />
                 </div>
-                <div class="p-2">
-                    <label></label>
-                    <input name="submit" value="Test" class="btn btn-sm btn-outline-info"/>
-                </div>
-                <div class="p-2">
-                    <button name="delete" class="btn btn-outline-danger btn-sm">-</button>
+                <div class="cell medium-auto">
+                    <label>Actions</label>
+                    <div class="small button-group">
+                        <button name="submit" class="button small">Test</button>
+                        <button name="delete" class="alert button small">-</button>
+                    </div>
                 </div>
             </form>
         </div>
-        <div class="row">
-            <div class="p-2">
-                <button id="addForm" class="btn btn-outline-success btn-sm">+</button>
+        <div class="grid-x">
+            <div class="cell">
+                <button id="addForm" class="success button small">+</button>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-3">
+        <div class="grid-x">
+            <div class="cell large-3">
                 <table id="table"></table> 
                 <div class="form-group">
                     <label for="formControlRange">Input Size</label>
                     <input type="range" class="form-control-range" name="inputSize" min="100000" max="10000000">
                 </div>
             </div>
-            <div class="col-lg-9">
+            <div class="cell large-auto">
                 <canvas id="chart"></canvas> 
             </div>
         </div>
-        <div class="row">
+        <div class="grid-x">
             
         </div>
         
