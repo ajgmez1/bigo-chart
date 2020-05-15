@@ -1,34 +1,56 @@
 <html>
 <head>
     <title> Collection Performance </title>
-    <script src="bower_components/chart.js/dist/Chart.js"></script>
+    <script src="node_modules/chart.js/dist/Chart.min.js"></script>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="src/main.css">
 </head>
 <body>
-    <div class="container">
-        <canvas id="chart"></canvas>
-        <form>
-
-            <div>
-                <p>Collection:</p>
-                <select id="collections"></select>
+    <div class="container-xl">
+        <div id="container">
+            <form id="0" class="row">
+                <div class="p-2">
+                    <label>Collection</label>
+                    <select name="collections"></select>
+                </div>
+                <div class="p-2">
+                    <label>Operation</label>
+                    <select name="operations"></select>
+                </div>
+                <div class="p-2">
+                    <label>Color</label>
+                    <input name="color" type="color" />
+                </div>
+                <div class="p-2">
+                    <label></label>
+                    <input name="submit" value="Test" class="btn btn-sm btn-outline-info"/>
+                </div>
+                <div class="p-2">
+                    <button name="delete" class="btn btn-outline-danger btn-sm">-</button>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="p-2">
+                <button id="addForm" class="btn btn-outline-success btn-sm">+</button>
             </div>
-
-            <div>
-                <p>Operation:</p>
-                <select id="operations"></select>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <table id="table"></table> 
+                <div class="form-group">
+                    <label for="formControlRange">Input Size</label>
+                    <input type="range" class="form-control-range" name="inputSize" min="100000" max="10000000">
+                </div>
             </div>
-
-            <div>
-                <p>Input Size:</p>
-                <input id="inputSize" type="range" value="1" min="100000" max="10000000"/>
+            <div class="col-lg-9">
+                <canvas id="chart"></canvas> 
             </div>
-
-            <div>
-                <input  id="submit" type="submit" value="Submit"/>
-            </div>
-
-        </form>
+        </div>
+        <div class="row">
+            
+        </div>
+        
     </div>
 </body>
 <script src="src/main.js"></script>
