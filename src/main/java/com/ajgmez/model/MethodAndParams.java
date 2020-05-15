@@ -11,12 +11,14 @@ public class MethodAndParams {
 
     private String type;
     private String name;
+    private String desc;
     private Class<?>[] params;
     private Method method;
 
-    public MethodAndParams(String type, String name, NodeList params) throws Exception {
+    public MethodAndParams(String type, String name, String desc, NodeList params) throws Exception {
         this.type = type;
         this.name = name;
+        this.desc = desc;
         this.params = new Class<?>[params.getLength()];
 
         for (int k = 0; k < params.getLength(); k++) {
@@ -49,6 +51,6 @@ public class MethodAndParams {
     }
 
     public String getDescription() {
-        return null;
+        return desc;
     }
 }

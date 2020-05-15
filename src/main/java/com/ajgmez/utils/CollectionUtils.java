@@ -37,9 +37,10 @@ public class CollectionUtils {
             for (int j = 0; j < methodList.getLength(); j++) {
                 Element m = (Element) methodList.item(j);
                 String type = m.getElementsByTagName("type").item(0).getTextContent();
+                String desc = m.getElementsByTagName("description").item(0).getTextContent();
                 String methodName = m.getElementsByTagName("value").item(0).getTextContent();
                 NodeList params = m.getElementsByTagName("paramsValue");
-                methods.add(new MethodAndParams(type, methodName, params));
+                methods.add(new MethodAndParams(type, methodName, desc, params));
             }
             String name = c.getAttributes().getNamedItem("id").getNodeValue();
             collections.put(name, new Collection(name, methods));

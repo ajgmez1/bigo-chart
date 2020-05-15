@@ -16,6 +16,7 @@
             <method>
                 <type>Access</type>
                 <value>get</value>
+                <description>ArrayList get() - O(1)</description>
                 <params>
                     <paramsValue>java.lang.Integer</paramsValue>
                 </params>
@@ -23,6 +24,7 @@
             <method>
                 <type>Search</type>
                 <value>contains</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -30,6 +32,7 @@
             <method>
                 <type>Insertion</type>
                 <value>add</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -37,6 +40,7 @@
             <method>
                 <type>Removal</type>
                 <value>remove</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -48,6 +52,7 @@
             <method>
                 <type>Access</type>
                 <value>get</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Integer</paramsValue>
                 </params>
@@ -55,6 +60,7 @@
             <method>
                 <type>Search</type>
                 <value>contains</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -62,6 +68,7 @@
             <method>
                 <type>Insertion</type>
                 <value>add</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -69,6 +76,7 @@
             <method>
                 <type>Removal</type>
                 <value>remove</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -80,12 +88,14 @@
             <method>
                 <type>Access</type>
                 <value>peek</value>
+                <description></description>
                 <params>
                 </params>
             </method>
             <method>
                 <type>Search</type>
                 <value>contains</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -93,6 +103,7 @@
             <method>
                 <type>Insertion</type>
                 <value>offer</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -100,6 +111,7 @@
             <method>
                 <type>Removal</type>
                 <value>remove</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -111,12 +123,14 @@
             <method>
                 <type>Access</type>
                 <value>peek</value>
+                <description></description>
                 <params>
                 </params>
             </method>
             <method>
                 <type>Search</type>
                 <value>contains</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -124,6 +138,7 @@
             <method>
                 <type>Insertion</type>
                 <value>offer</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -131,6 +146,7 @@
             <method>
                 <type>Removal</type>
                 <value>remove</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -142,6 +158,7 @@
             <method>
                 <type>Search</type>
                 <value>contains</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -149,6 +166,7 @@
             <method>
                 <type>Insertion</type>
                 <value>add</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -156,6 +174,7 @@
             <method>
                 <type>Removal</type>
                 <value>remove</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -167,6 +186,7 @@
             <method>
                 <type>Search</type>
                 <value>contains</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -174,6 +194,7 @@
             <method>
                 <type>Insertion</type>
                 <value>add</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -181,6 +202,7 @@
             <method>
                 <type>Removal</type>
                 <value>remove</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -192,6 +214,7 @@
             <method>
                 <type>Access</type>
                 <value>get</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -199,6 +222,7 @@
             <method>
                 <type>Search</type>
                 <value>containsKey</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -206,6 +230,7 @@
             <method>
                 <type>Insertion</type>
                 <value>put</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                     <paramsValue>java.lang.Object</paramsValue>
@@ -214,6 +239,7 @@
             <method>
                 <type>Removal</type>
                 <value>remove</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -225,6 +251,7 @@
             <method>
                 <type>Access</type>
                 <value>get</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -232,6 +259,7 @@
             <method>
                 <type>Search</type>
                 <value>containsKey</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -239,6 +267,7 @@
             <method>
                 <type>Insertion</type>
                 <value>put</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                     <paramsValue>java.lang.Object</paramsValue>
@@ -247,6 +276,7 @@
             <method>
                 <type>Removal</type>
                 <value>remove</value>
+                <description></description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
