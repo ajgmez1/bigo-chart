@@ -8,13 +8,14 @@ import java.util.Random;
 
 import com.ajgmez.enums.OperationEnum;
 import com.ajgmez.model.Collection;
+import com.ajgmez.model.CollectionList;
 import com.ajgmez.utils.CollectionUtils;
 
 /**
  * Created by gumz11 on 6/23/17.
  */
 public class PerformanceTestImpl {
-    private Map<String, Collection> collections;
+    private CollectionList collections;
 
     public PerformanceTestImpl() throws Exception {
         this.collections = CollectionUtils.getCollections();
@@ -25,8 +26,8 @@ public class PerformanceTestImpl {
 
         Collection c = collections.get(collection);
         Object o = c.getObject();
-        Method method = c.getMethodAndParams(operation).getMethod();
-        Method insert = c.getMethodAndParams(OperationEnum.Insertion.name()).getMethod();
+        Method method = c.getMethod(operation);
+        Method insert = c.getMethod(OperationEnum.Insertion.name());
         
         int step = Math.round(inputSize / 100);
         

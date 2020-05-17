@@ -1,8 +1,8 @@
 package com.ajgmez.model;
 
 import java.lang.reflect.Method;
-
-import org.w3c.dom.NodeList;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by gumz11 on 6/23/17.
@@ -12,42 +12,62 @@ public class MethodAndParams {
     private String type;
     private String name;
     private String desc;
-    private Class<?>[] params;
     private Method method;
+    private List<Class<?>> paramsList;
 
-    public MethodAndParams(String type, String name, String desc, NodeList params) throws Exception {
+    public MethodAndParams() {
+        this.paramsList = new ArrayList<>();
+    }
+
+    public void setType(String type) {
         this.type = type;
-        this.name = name;
-        this.desc = desc;
-        this.params = new Class<?>[params.getLength()];
-
-        for (int k = 0; k < params.getLength(); k++) {
-            try {
-                this.params[k] = (Class<?>) Class.forName(params.item(k).getTextContent()).getField("TYPE").get(null);
-            } catch (Exception e) {
-                this.params[k] = Class.forName(params.item(k).getTextContent());
-            }
-        }
     }
 
     public String getType() {
         return type;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
 
-    public Class<?>[] getParams() {
-        return params;
+    public void addParam(String p) {
+        Class<?> c = null;
+        try {
+            c = (Class<?>) Class.forName(p).getField("TYPE").get(null);
+        } catch (Exception e) {
+            try {
+                c = Class.forName(p);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+
+        paramsList.add(c);
     }
 
-    public void setMethod(Method m) {
-        method = m;
+    public Class<?>[] getParams() {
+        return paramsList.stream().toArray(Class<?>[]::new);
+    }
+
+    public void setMethod(Collection c) {
+        try {
+            method = c.getObject().getClass().getDeclaredMethod(name, this.getParams());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public Method getMethod() {
         return method;
+    }
+
+    public void setDescription(String desc) {
+        this.desc = desc;
     }
 
     public String getDescription() {

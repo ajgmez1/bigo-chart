@@ -1,17 +1,8 @@
 <?xml version="1.0"?>
-<!DOCTYPE Collections [
-    <!ELEMENT Collections (collection)*>
-    <!ELEMENT collection (methods)>
-        <!ATTLIST collection id ID #IMPLIED>
-    <!ELEMENT methods (method)*>
-    <!ELEMENT method (type, value, params)>
-    <!ELEMENT type (#PCDATA)>
-    <!ELEMENT value (#PCDATA)>
-    <!ELEMENT params (paramsValue)*>
-    <!ELEMENT paramsValue (#PCDATA)>
-]>
-<Collections>
-    <collection id="ArrayList">
+
+<collections>
+    <collection>
+        <name>ArrayList</name>
         <methods>
             <method>
                 <type>Access</type>
@@ -47,7 +38,8 @@
             </method>
         </methods>
     </collection>
-    <collection id="LinkedList">
+    <collection>
+        <name>LinkedList</name>
         <methods>
             <method>
                 <type>Access</type>
@@ -83,7 +75,8 @@
             </method>
         </methods>
     </collection>
-    <collection id="ArrayDeque">
+    <collection>
+        <name>ArrayDeque</name>
         <methods>
             <method>
                 <type>Access</type>
@@ -118,7 +111,8 @@
             </method>
         </methods>
     </collection>
-    <collection id="PriorityQueue">
+    <collection>
+        <name>PriorityQueue</name>
         <methods>
             <method>
                 <type>Access</type>
@@ -153,7 +147,8 @@
             </method>
         </methods>
     </collection>
-    <collection id="HashSet">
+    <collection>
+        <name>HashSet</name>
         <methods>
             <method>
                 <type>Search</type>
@@ -181,7 +176,8 @@
             </method>
         </methods>
     </collection>
-    <collection id="TreeSet">
+    <collection>
+        <name>TreeSet</name>
         <methods>
             <method>
                 <type>Search</type>
@@ -209,7 +205,8 @@
             </method>
         </methods>
     </collection>
-    <collection id="HashMap">
+    <collection>
+        <name>HashMap</name>
         <methods>
             <method>
                 <type>Access</type>
@@ -246,7 +243,8 @@
             </method>
         </methods>
     </collection>
-    <collection id="TreeMap">
+    <collection>
+        <name>TreeMap</name>
         <methods>
             <method>
                 <type>Access</type>
@@ -283,4 +281,4 @@
             </method>
         </methods>
     </collection>
-</Collections>
+</collections>

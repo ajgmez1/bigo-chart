@@ -1,9 +1,7 @@
 package com.ajgmez.model;
 
 import java.lang.reflect.Constructor;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Method;
 
 /**
  * Created by gumz11 on 6/23/17.
@@ -12,17 +10,10 @@ public class Collection {
 
     private String name;
     private Object instance;
-    private Map<String, MethodAndParams> methods;
+    private MethodAndParamsList methods;
 
-    public Collection(String name, List<MethodAndParams> methods) throws Exception {
-        this.methods = new HashMap<>();
-        this.name = name;
-        this.instance = this.newInstance();
-
-        for (MethodAndParams m : methods) {
-            m.setMethod(this.instance.getClass().getDeclaredMethod(m.getName(), m.getParams()));
-            this.methods.put(m.getType(), m);
-        }
+    public Collection() throws Exception {
+        this.methods = new MethodAndParamsList();
     }
 
     private Object newInstance() throws Exception {
@@ -31,15 +22,27 @@ public class Collection {
         return constructor.newInstance();
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Object getInstance() {
+        return instance;
+    }
+
     public Object getObject() throws Exception {
         return this.newInstance();
     }
 
-    public Map<String, MethodAndParams> getMethods() {
+    public MethodAndParamsList getMethods() {
         return methods;
     }
 
-    public MethodAndParams getMethodAndParams(String m) {
-        return methods.get(m);
+    public Method getMethod(String m) {
+        return methods.get(m).getMethod();
     }
 }
