@@ -93,6 +93,7 @@
             var collections = form.querySelector('[name=collections]');
             var operations = form.querySelector('[name=operations]');
             var submit = form.querySelector('[name=submit]');
+            var info = form.querySelector('[name=info]');
             var deleteBtn = form.querySelector("[name=delete]");
             var color = form.querySelector('[name=color]');
 
@@ -105,13 +106,6 @@
             collections.onchange = () => {
                 const values = operations.c[collections.value].methods.map((m) => m.type);
                 Helper.createSelectHTML(operations, values);
-                operations.onchange();
-            };
-            operations.onchange = () => {
-                const methods = operations.c[collections.value].methods;
-                const { type, name, description } = methods.find((m) => m.type === operations.value);
-                // TODO: show description somewhere!?
-                console.log(type, name, description);
             };
             color.onchange = () => {
                 form.color = color.value;
@@ -141,15 +135,60 @@
 
                     if (!e.bulk) {
                         chart.update();
+                        disable(false, [submit]);
                         chart.options.animation.onComplete = () => {
-                            disable(false, [submit, inputSize, testAll]);
+                            disable(false, [inputSize, testAll]);
                         }
                     }
                 });
             };
+            info.addEventListener('click', () => {
+                const collection = operations.c[collections.value];
+                const container = document.querySelector('#accordion-container');
+                const accordion = container.querySelector('#accordion');
+                const itemTemplate = container.querySelector('#accordion-template');
+                const items = accordion.querySelectorAll('.accordion-item');
+    
+                for (var i = 0; i < items.length; i++) {
+                    items[i].remove();
+                }
+                
+                let methods = collection.methods.map((m) => ({
+                    name: `${m.type} - ${m.name}()`,
+                    desc: m.description
+                }));
+                methods = [{ name: collection.name, desc: collection.description }].concat(methods);
+    
+                methods.forEach((m, i) => {
+                    const newItem = itemTemplate.cloneNode(true);
+                    newItem.id = "";
+                    newItem.querySelector('.accordion-title').textContent = m.name;
+                    newItem.querySelector('.accordion-content').textContent = m.desc;
+                    if (i === 0) {
+                        newItem.classList.add('is-active');
+                    }
 
-            deleteBtn.addEventListener('click', (e) => {
-                deleteForm(parseInt(form.id));
+                    accordion.appendChild(newItem);
+                });
+
+                document.querySelector('#info-title').textContent = collection.name;
+                new Foundation.Accordion($(accordion), {});
+            });
+            deleteBtn.addEventListener('click', () => {
+                var id = form.id;
+    
+                if (form && config.forms.length > 0) {
+                    form.remove();
+                    
+                    config.forms.splice(id, 1);
+                    config.forms.forEach((f, i) => f.id = i);
+                    config.next = config.forms.length;
+    
+                    disable(false, [addForm]);
+    
+                    chart.data.datasets.splice(id, 1);
+                    chart.update();
+                }
             });
 
             // GET select options
@@ -162,22 +201,6 @@
                 collections.onchange();
             });
         };
-        const deleteForm = function(id) {
-            var form = config.forms[id];
-
-            if (form && config.forms.length > 0) {
-                form.remove();
-                
-                config.forms.splice(id, 1);
-                config.forms.forEach((f, i) => f.id = i);
-                config.next = config.forms.length;
-
-                disable(false, [addForm]);
-
-                chart.data.datasets.splice(id, 1);
-                chart.update();
-            }
-        };
         const disable = (d, els) => {
             els.forEach((e) => {
                 if (d) {
@@ -186,7 +209,7 @@
                     e.removeAttribute('disabled');
                 }
             });
-        }
+        };
 
         return {
             createForm: function() {

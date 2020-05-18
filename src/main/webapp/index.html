@@ -2,6 +2,7 @@
 <head>
     <title> Collection Performance </title>
     <script src="node_modules/chart.js/dist/Chart.js"></script>
+    <link rel="stylesheet" href="node_modules/material-icons/iconfont/material-icons.css">
     <link rel="stylesheet" href="node_modules/foundation-sites/dist/css/foundation.min.css">
     <link rel="stylesheet" href="node_modules/foundation-sites/dist/css/foundation-prototype.min.css">
     <link rel="stylesheet" href="src/main.css">
@@ -16,55 +17,78 @@
     <div class="grid-container">
         <div class="grid-x">
             <div class="cell">
+                <h1>Hello</h1>
+                <h2>Hello</h2>
                 <h3>Hello</h3>
-                <p> This is some information about the site. </p>
+                <h4>Hello</h4>
+                <h5>Hello</h5>
+                <p> <span class="h4">This is some information about the site.</span>
+                    This is some information about the site. 
+                    This is a paragraph. Paragraphs are preset with a font size, line height and spacing to match the overall vertical rhythm. To show what a paragraph looks like this needs a little more content so, did you know that there are storms occurring on Jupiter that are larger than the Earth? Pretty cool. Wrap strong around type to <strong>make it bold!</strong>. You can also use em to <em>italicize your words</em>.</p>
             </div>
         </div>
         <div class="grid-x">
             <div class="cell large-auto">
-                <canvas id="chart"></canvas> 
-            </div>
-            <div class="cell card large-3">
-                <div class="card-section">
-                    <table id="table"></table> 
+                <canvas id="chart"></canvas>
+                <div id="master-form" class="grid-x">
+                    <div class="cell">
+                        <button id="addForm" class="success button small">+</button>
+                        <button id="testAll" class="button small">Test all</button>
+                        <div class="display-inline-block input-size">
+                            <label class="">Input Size</label>
+                            <input id="inputSize" type="range" class="" value="100000" min="100000" max="10000000">
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div id="master-form" class="grid-x">
-            <div class="cell">
-                <button id="addForm" class="success button small">+</button>
-                <button id="testAll" class="button small">Test all</button>
-                <div class="display-inline-block input-size">
-                    <label class="">Input Size</label>
-                    <input id="inputSize" type="range" class="" value="100000" min="100000" max="10000000">
-                </div>
-            </div>
-        </div>
-        <div id="container" class="card">
-            <div id="form-template" class="grid-x grid-padding-x">
-                <div class="cell medium-3">
-                    <label>Collection</label>
-                    <select name="collections"></select>
-                </div>
-                <div class="cell medium-2">
-                    <label>Operation</label>
-                    <select name="operations"></select>
-                </div>
-                <div class="cell medium-2">
-                    <label>Color</label>
-                    <input name="color" type="color" value="#17aaff" />
-                </div>
-                <div class="cell medium-auto">
-                    <label>Actions</label>
-                    <div class="small button-group">
-                        <button name="submit" class="button">Test</button>
-                        <button name="delete" class="alert button">-</button>
+                <div id="container" class="card">
+                    <div id="form-template" class="grid-x grid-padding-x">
+                        <div class="cell medium-4">
+                            <label>Collection</label>
+                            <select name="collections"></select>
+                        </div>
+                        <div class="cell medium-3">
+                            <label>Operation</label>
+                            <select name="operations"></select>
+                        </div>
+                        <div class="cell medium-2">
+                            <label>Color</label>
+                            <input name="color" type="color" value="#17aaff" />
+                        </div>
+                        <div class="cell medium-auto">
+                            <label>Actions</label>
+                            <div class="small button-group">
+                                <button name="submit" class="button">Test</button>
+                                <button name="info" class="button secondary">Info</button>
+                                <button name="delete" class="alert button">-</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="cell large-5">
+                <div class="card-divider">
+                    <span class="material-icons mi-info flex-container align-middle">info</span>
+                    <h4 id="info-title" class="padding-left-1"> </h4>
+                </div>
+                <div class="card-section" id="accordion-container">
+                    <li id="accordion-template" class="accordion-item" data-accordion-item>
+                        <a class="accordion-title"> </a>
+                        <div class="accordion-content" data-tab-content>
+                        </div>
+                    </li>
+                    <ul id="accordion" class="accordion" data-accordion>
+                        
+                    </ul>
+                </div>
+            </div>
         </div>
-        
     </div>
+    <footer class="top-bar"></footer>
 </body>
 <script src="src/main.js"></script>
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="node_modules/foundation-sites/dist/js/foundation.min.js"></script>
+<script>
+    $(document).foundation();
+</script>
 </html>

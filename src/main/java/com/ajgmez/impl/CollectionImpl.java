@@ -44,6 +44,8 @@ public class CollectionImpl {
                 m.put(mp);
             }
             
+            c.put("name", entry.getName());
+            c.put("description", entry.getDescription());
             c.put("methods", m);
             j.put(entry.getName(), c);
         }

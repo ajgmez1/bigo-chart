@@ -11,6 +11,7 @@ public class CollectionHandler extends DefaultHandler {
     private MethodAndParamsList methodlist;
     private MethodAndParams mp;
     private String elementValue;
+    private boolean methodsXml;
 
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
@@ -34,6 +35,7 @@ public class CollectionHandler extends DefaultHandler {
                 collectionList.add(c);
                 break;
             case "methods":
+                methodsXml = true;
                 methodlist = c.getMethods();
                 break;
             case "method":
@@ -56,13 +58,20 @@ public class CollectionHandler extends DefaultHandler {
                 mp.setName(elementValue);
                 break;
             case "description":
-                mp.setDescription(elementValue);
+                if (methodsXml) {
+                    mp.setDescription(elementValue);
+                } else {
+                    c.setDescription(elementValue);
+                }
                 break;
             case "paramsValue":
                 mp.addParam(elementValue);
                 break;
             case "method":
                 mp.setMethod(c);
+                break;
+            case "methods":
+                methodsXml = false;
                 break;
         }
     }

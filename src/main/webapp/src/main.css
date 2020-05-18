@@ -5,3 +5,11 @@
 #form-template {
   display: none;
 }
+
+#accordion-template {
+  display: none;
+}
+
+.mi-info {
+  font-size: 14px;
+}

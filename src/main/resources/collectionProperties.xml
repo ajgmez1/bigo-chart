@@ -3,6 +3,7 @@
 <collections>
     <collection>
         <name>ArrayList</name>
+        <description>ArrayList description</description>
         <methods>
             <method>
                 <type>Access</type>

@@ -9,6 +9,7 @@ import java.lang.reflect.Method;
 public class Collection {
 
     private String name;
+    private String desc;
     private Object instance;
     private MethodAndParamsList methods;
 
@@ -44,5 +45,13 @@ public class Collection {
 
     public Method getMethod(String m) {
         return methods.get(m).getMethod();
+    }
+
+	public String getDescription() {
+		return desc;
+    }
+    
+    public void setDescription(String desc) { 
+        this.desc = desc;
     }
 }
