@@ -17,14 +17,32 @@
     <div class="grid-container">
         <div class="grid-x">
             <div class="cell">
-                <h1>Hello</h1>
-                <h2>Hello</h2>
-                <h3>Hello</h3>
-                <h4>Hello</h4>
-                <h5>Hello</h5>
-                <p> <span class="h4">This is some information about the site.</span>
-                    This is some information about the site. 
-                    This is a paragraph. Paragraphs are preset with a font size, line height and spacing to match the overall vertical rhythm. To show what a paragraph looks like this needs a little more content so, did you know that there are storms occurring on Jupiter that are larger than the Earth? Pretty cool. Wrap strong around type to <strong>make it bold!</strong>. You can also use em to <em>italicize your words</em>.</p>
+                <p></p>
+                <p> 
+                    <span class="h4">The goal is to visualize Big-O trends</span> on the chart below.
+                    Specifically, we are testing Java collections.
+                    You can compare different Java collections and operations. The backend benchmarks the 
+                    time for an operation to complete on a collection up to a max input size. Input size is 
+                    the number of elements in the collection when the operation runs. It returns raw data, so 
+                    you will see best, worst, and average case times plotted in the chart. Even with raw data, 
+                    you can see the upper range, representing worst case scenarios, resulting in the Big-O 
+                    trends we might expect to see.
+                </p>
+                <p>
+                    There are going to be outliers in the data. Also, some operations are so quick that they only take
+                    tens of nanoseconds to perform. There is no filtering on the data, it's raw data, so it may be a good 
+                    idea to run these tests multiple times. Again, the goal is to visualize the trends, so even with 
+                    results including outliers and very fast operations we can still identify if an operation is linear 
+                    or constant time.
+                </p>
+                <p>
+                    The official documentation for Java collections can be found at 
+                    <a href="https://docs.oracle.com/en/java/javase/11/docs/api/" target="_blank"> 
+                        Java Platform, Standard Edition & Java Development Kit, Version 11 API Specification.
+                    </a>
+                    Pieces of the documentation are included here for convenience. You can view
+                    these summaries by clicking on the Info button of a configured series. 
+                </p>
             </div>
         </div>
         <div class="grid-x">
@@ -65,10 +83,15 @@
                     </div>
                 </div>
             </div>
-            <div class="cell large-5">
-                <div class="card-divider">
-                    <span class="material-icons mi-info flex-container align-middle">info</span>
-                    <h4 id="info-title" class="padding-left-1"> </h4>
+            <div id="info-cell" class="cell large-5" style="display: none;">
+                <div class="card-divider grid-x">
+                    <div class="small-11 grid-x">
+                        <span class="material-icons mi-icon">info</span>
+                        <h4 id="info-title" class="padding-left-1 margin-0"> </h4>
+                    </div>
+                    <div class="small-1 grid-x">
+                        <span id="info-close" class="material-icons mi-icon mi-close">close</span>
+                    </div>
                 </div>
                 <div class="card-section" id="accordion-container">
                     <li id="accordion-template" class="accordion-item" data-accordion-item>
