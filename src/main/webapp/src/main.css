@@ -10,6 +10,18 @@
   display: none;
 }
 
-.mi-info {
+.mi-icon {
   font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.mi-close {
+  cursor: pointer;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.grid-container {
+  min-height: calc(100% - 4rem);
 }

@@ -53,10 +53,12 @@
 
     var Form = (function() {
         var container = document.getElementById('container');
+        var closeInfo = document.querySelector('#info-close');
         var master = document.getElementById('master-form');
         var addForm = master.querySelector('#addForm');
         var testAll = master.querySelector('#testAll');
         var inputSize = master.querySelector('#inputSize');
+        
         var config = {
             next: 0,
             max: 5,
@@ -72,6 +74,9 @@
         });
         testAll.addEventListener('click', () => testAllFn());
         inputSize.addEventListener('change', () => testAllFn());
+        closeInfo.addEventListener('click', () => {
+            $('#info-cell').fadeOut('fast', () => chart.resize());
+        });
 
         // private methods
         const testAllFn = () => {
@@ -173,6 +178,8 @@
 
                 document.querySelector('#info-title').textContent = collection.name;
                 new Foundation.Accordion($(accordion), {});
+                $('#info-cell').fadeIn('fast');
+                chart.resize();
             });
             deleteBtn.addEventListener('click', () => {
                 var id = form.id;
