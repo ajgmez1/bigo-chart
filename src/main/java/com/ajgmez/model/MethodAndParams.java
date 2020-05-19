@@ -54,6 +54,10 @@ public class MethodAndParams {
         return paramsList.stream().toArray(Class<?>[]::new);
     }
 
+    public List<Class<?>> getParamsList() {
+        return paramsList;
+    }
+
     public void setMethod(Collection c) {
         try {
             method = c.getObject().getClass().getDeclaredMethod(name, this.getParams());

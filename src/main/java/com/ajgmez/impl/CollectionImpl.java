@@ -41,6 +41,10 @@ public class CollectionImpl {
                 mp.put("name", methodAndParams.getName());
                 mp.put("description", methodAndParams.getDescription());
 
+                JSONArray p = new JSONArray();
+                methodAndParams.getParamsList().forEach((param) -> p.put(param.getName()));
+                mp.put("params", p);
+
                 m.put(mp);
             }
             
