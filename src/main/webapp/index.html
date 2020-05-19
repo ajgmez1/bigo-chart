@@ -41,7 +41,7 @@
                         Java Platform, Standard Edition & Java Development Kit, Version 11 API Specification.
                     </a>
                     Pieces of the documentation are included here for convenience. You can view
-                    these summaries by clicking on the Info button of a configured series. 
+                    the docs by clicking on the Info button of a series. 
                 </p>
             </div>
         </div>
@@ -52,9 +52,13 @@
                     <div class="cell">
                         <button id="addForm" class="success button small">+</button>
                         <button id="testAll" class="button small">Test all</button>
-                        <div class="display-inline-block input-size">
-                            <label class="">Input Size</label>
+                        <div class="display-inline-block input-range">
+                            <label id="inputSizeLabel">Input Size</label>
                             <input id="inputSize" type="range" class="" value="100000" min="100000" max="10000000">
+                        </div>
+                        <div class="display-inline-block input-range">
+                            <label id="dataPointLabel">Data Points</label>
+                            <input id="dataPoint" type="range" class="" value="100" min="100" max="200">
                         </div>
                     </div>
                 </div>
@@ -83,7 +87,7 @@
                     </div>
                 </div>
             </div>
-            <div id="info-cell" class="cell large-5" style="display: none;">
+            <div id="info-cell" class="cell large-5">
                 <div class="card-divider grid-x">
                     <div class="small-11 grid-x">
                         <span class="material-icons mi-icon">info</span>

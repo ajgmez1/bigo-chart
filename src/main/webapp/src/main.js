@@ -58,6 +58,13 @@
         var addForm = master.querySelector('#addForm');
         var testAll = master.querySelector('#testAll');
         var inputSize = master.querySelector('#inputSize');
+        var dataPoint = master.querySelector('#dataPoint');
+        var inputSizeLabel = master.querySelector('#inputSizeLabel');
+        var dataPointLabel = master.querySelector('#dataPointLabel');
+        var lastCValue = "";
+
+        inputSizeLabel.name = inputSizeLabel.textContent;
+        dataPointLabel.name = dataPointLabel.textContent;
         
         var config = {
             next: 0,
@@ -73,27 +80,19 @@
             }
         });
         testAll.addEventListener('click', () => testAllFn());
-        inputSize.addEventListener('change', () => testAllFn());
+        inputSize.addEventListener('change', () => {
+            setRangeLabel(inputSizeLabel, inputSize);
+            testAllFn();
+        });
+        dataPoint.addEventListener('change', () => {
+            setRangeLabel(dataPointLabel, dataPoint);
+            testAllFn();
+        });
         closeInfo.addEventListener('click', () => {
             $('#info-cell').fadeOut('fast', () => chart.resize());
         });
 
         // private methods
-        const testAllFn = () => {
-            const reqs = [], fields = [];
-            config.forms.forEach((f) => {
-                var submit = f.querySelector('[name=submit]');
-                reqs.push(submit.onclick);
-                fields.push(submit);
-            });
-
-            Promise.all(reqs.map((req) => req({ bulk: true }))).then(() => {
-                chart.update();
-                chart.options.animation.onComplete = () => {
-                    disable(false, fields.concat([testAll, inputSize]));
-                }
-            });
-        };
         const addEvents = function(form) {
             var collections = form.querySelector('[name=collections]');
             var operations = form.querySelector('[name=operations]');
@@ -109,6 +108,7 @@
 
             // Events
             collections.onchange = () => {
+                lastCValue = collections.value;
                 const values = operations.c[collections.value].methods.map((m) => m.type);
                 Helper.createSelectHTML(operations, values);
             };
@@ -117,7 +117,7 @@
             };
             submit.onclick = (e) => {
                 if (submit.hasAttribute('disabled')) return;
-                disable(true, [submit, inputSize, testAll]);
+                disable(true, [submit, inputSize, testAll, dataPoint]);
 
                 return Helper.request('api/collection/test', {
                     method: 'POST',
@@ -125,7 +125,8 @@
                     body: JSON.stringify({
                         collection: collections.value,
                         operation: operations.value,
-                        inputSize: inputSize.value
+                        n: inputSize.value,
+                        points: dataPoint.value
                     })
                 }, (json) => {
                     chart.data.labels = [];
@@ -142,7 +143,7 @@
                         chart.update();
                         disable(false, [submit]);
                         chart.options.animation.onComplete = () => {
-                            disable(false, [inputSize, testAll]);
+                            disable(false, [inputSize, testAll, dataPoint]);
                         }
                     }
                 });
@@ -159,10 +160,10 @@
                 }
                 
                 let methods = collection.methods.map((m) => ({
-                    name: `${m.type} - ${m.name}()`,
+                    name: setInfoTitle(m),
                     desc: m.description
                 }));
-                methods = [{ name: collection.name, desc: collection.description }].concat(methods);
+                methods = [{ name: "Description", desc: collection.description }].concat(methods);
     
                 methods.forEach((m, i) => {
                     const newItem = itemTemplate.cloneNode(true);
@@ -205,6 +206,7 @@
             ]).then(([c, o]) => {
                 Helper.createSelectHTML(collections, c.Collections);
                 operations.c = o;
+                collections.value = lastCValue ? lastCValue : collections.value;
                 collections.onchange();
             });
         };
@@ -217,6 +219,30 @@
                 }
             });
         };
+        const setRangeLabel = (label, range) => {
+            label.textContent = `${label.name} (${range.value})`;
+        };
+        const testAllFn = () => {
+            const reqs = [], fields = [];
+            config.forms.forEach((f) => {
+                var submit = f.querySelector('[name=submit]');
+                reqs.push(submit.onclick);
+                fields.push(submit);
+            });
+
+            Promise.all(reqs.map((req) => req({ bulk: true }))).then(() => {
+                chart.update();
+                chart.options.animation.onComplete = () => {
+                    disable(false, fields.concat([testAll, inputSize, dataPoint]));
+                }
+            });
+        };
+        const setInfoTitle = (m) => {
+            return `${m.type} - ${m.name}()`;
+        };
+
+        setRangeLabel(inputSizeLabel, inputSize);
+        setRangeLabel(dataPointLabel, dataPoint);
 
         return {
             createForm: function() {

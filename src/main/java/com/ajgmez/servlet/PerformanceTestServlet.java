@@ -53,7 +53,8 @@ public class PerformanceTestServlet extends HttpServlet {
             results = impl.test(
                 jsonObject.get("collection").toString(),
                 jsonObject.get("operation").toString(),
-                Integer.parseInt(jsonObject.get("inputSize").toString()));
+                Integer.parseInt(jsonObject.get("n").toString()),
+                Integer.parseInt(jsonObject.get("points").toString()));
         } catch (Exception e) {
             logger.log(Level.INFO, e.toString());
             resp.sendError(422, e.toString());

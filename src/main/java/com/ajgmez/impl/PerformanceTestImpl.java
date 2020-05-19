@@ -21,7 +21,7 @@ public class PerformanceTestImpl {
         this.collections = CollectionUtils.getCollections();
     }
 
-    public Map<Integer, Long> test(String collection, String operation, int inputSize) throws Exception {
+    public Map<Integer, Long> test(String collection, String operation, int n, int points) throws Exception {
         Map<Integer, Long> results = new HashMap<>();
 
         Collection c = collections.get(collection);
@@ -29,9 +29,9 @@ public class PerformanceTestImpl {
         Method method = c.getMethod(operation);
         Method insert = c.getMethod(OperationEnum.Insertion.name());
         
-        int step = Math.round(inputSize / 100);
+        int step = Math.round(n / points);
         
-        for (int i = 1; i <= inputSize; i++) {
+        for (int i = 1; i <= n; i++) {
             // populate collection before testing
             if (!operation.equals(OperationEnum.Insertion.name())) {
                 this.run(o, insert, i);
