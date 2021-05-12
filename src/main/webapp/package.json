@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chart.js": "2.9.3",
+    "chart.js": "2.9.4",
     "foundation-sites": "6.6.3",
     "jquery": "3.5.1",
     "material-icons": "0.3.1"
