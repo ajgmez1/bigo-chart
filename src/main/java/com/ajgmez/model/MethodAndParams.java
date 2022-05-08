@@ -11,6 +11,7 @@ public class MethodAndParams {
 
     private String type;
     private String name;
+    private String bigo;
     private String desc;
     private Method method;
     private List<Class<?>> paramsList;
@@ -33,6 +34,14 @@ public class MethodAndParams {
 
     public String getName() {
         return name;
+    }
+
+    public void setBigO(String bigo) {
+        this.bigo = bigo;
+    }
+
+    public String getBigO() {
+        return bigo;
     }
 
     public void addParam(String p) {

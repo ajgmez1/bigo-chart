@@ -238,8 +238,8 @@
             });
         };
         const setInfoTitle = (m) => {
-            const params = m.params.join(', ').replace(/java\..*\./g, '')
-            return `${m.type} - ${m.name}(${params})`;
+            const params = m.params.join(', ').replace(/java\..*\./g, '');
+            return `${m.type} - ${m.bigo} - ${m.name}(${params})`;
         };
 
         setRangeLabel(inputSizeLabel, inputSize);

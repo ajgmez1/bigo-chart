@@ -8,32 +8,32 @@ The size, isEmpty, get, set, iterator, and listIterator operations run in consta
         <methods>
             <method>
                 <type>Access</type>
-                <value>get</value>
-                <description>O(1) - Returns the element at the specified position in this list.</description>
+                <value>get</value><bigo>O(1)</bigo>
+                <description>Returns the element at the specified position in this list.</description>
                 <params>
                     <paramsValue>java.lang.Integer</paramsValue>
                 </params>
             </method>
             <method>
                 <type>Search</type>
-                <value>contains</value>
-                <description>O(n) - Returns true if this list contains the specified element. More formally, returns true if and only if this list contains at least one element e such that Objects.equals(o, e).</description>
+                <value>contains</value><bigo>O(n)</bigo>
+                <description>Returns true if this list contains the specified element. More formally, returns true if and only if this list contains at least one element e such that Objects.equals(o, e).</description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
             </method>
             <method>
                 <type>Insertion</type>
-                <value>add</value>
-                <description>O(1) - Appends the specified element to the end of this list.</description>
+                <value>add</value><bigo>O(1)</bigo>
+                <description>Appends the specified element to the end of this list.</description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
             </method>
             <method>
                 <type>Removal</type>
-                <value>remove</value>
-                <description>O(n) - Removes the element at the specified position in this list. Shifts any subsequent elements to the left (subtracts one from their indices).</description>
+                <value>remove</value><bigo>O(n)</bigo>
+                <description>Removes the element at the specified position in this list. Shifts any subsequent elements to the left (subtracts one from their indices).</description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -47,32 +47,32 @@ All of the operations perform as could be expected for a doubly-linked list. Ope
         <methods>
             <method>
                 <type>Access</type>
-                <value>get</value>
-                <description>O(n) - Returns the element at the specified position in this list.</description>
+                <value>get</value><bigo>O(n)</bigo>
+                <description>Returns the element at the specified position in this list.</description>
                 <params>
                     <paramsValue>java.lang.Integer</paramsValue>
                 </params>
             </method>
             <method>
                 <type>Search</type>
-                <value>contains</value>
-                <description>O(n) - Returns true if this list contains the specified element. More formally, returns true if and only if this list contains at least one element e such that Objects.equals(o, e).</description>
+                <value>contains</value><bigo>O(n)</bigo>
+                <description>Returns true if this list contains the specified element. More formally, returns true if and only if this list contains at least one element e such that Objects.equals(o, e).</description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
             </method>
             <method>
                 <type>Insertion</type>
-                <value>add</value>
-                <description>O(1) - Appends the specified element to the end of this list.</description>
+                <value>add</value><bigo>O(1)</bigo>
+                <description>Appends the specified element to the end of this list.</description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
             </method>
             <method>
                 <type>Removal</type>
-                <value>remove</value>
-                <description>O(n) - Removes the first occurrence of the specified element from this list, if it is present. If this list does not contain the element, it is unchanged. More formally, removes the element with the lowest index i such that Objects.equals(o, get(i)) (if such an element exists). Returns true if this list contained the specified element (or equivalently, if this list changed as a result of the call).</description>
+                <value>remove</value><bigo>O(n)</bigo>
+                <description>Removes the first occurrence of the specified element from this list, if it is present. If this list does not contain the element, it is unchanged. More formally, removes the element with the lowest index i such that Objects.equals(o, get(i)) (if such an element exists). Returns true if this list contained the specified element (or equivalently, if this list changed as a result of the call).</description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -86,31 +86,31 @@ Most ArrayDeque operations run in amortized constant time. Exceptions include re
         <methods>
             <method>
                 <type>Access</type>
-                <value>peek</value>
-                <description>O(1) - Retrieves, but does not remove, the head of the queue represented by this deque (in other words, the first element of this deque), or returns null if this deque is empty.</description>
+                <value>peek</value><bigo>O(1)</bigo>
+                <description>Retrieves, but does not remove, the head of the queue represented by this deque (in other words, the first element of this deque), or returns null if this deque is empty.</description>
                 <params>
                 </params>
             </method>
             <method>
                 <type>Search</type>
-                <value>contains</value>
-                <description>O(n) - Returns true if this deque contains the specified element. More formally, returns true if and only if this deque contains at least one element e such that Objects.equals(o, e).</description>
+                <value>contains</value><bigo>O(n)</bigo>
+                <description>Returns true if this deque contains the specified element. More formally, returns true if and only if this deque contains at least one element e such that Objects.equals(o, e).</description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
             </method>
             <method>
                 <type>Insertion</type>
-                <value>offer</value>
-                <description>O(1) - Inserts the specified element at the end of this deque.</description>
+                <value>offer</value><bigo>O(1)</bigo>
+                <description>Inserts the specified element at the end of this deque.</description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
             </method>
             <method>
                 <type>Removal</type>
-                <value>remove</value>
-                <description>O(n) - Removes a single instance of the specified element from this deque. If the deque does not contain the element, it is unchanged. More formally, removes the first element e such that o.equals(e) (if such an element exists). Returns true if this deque contained the specified element (or equivalently, if this deque changed as a result of the call).</description>
+                <value>remove</value><bigo>O(n)</bigo>
+                <description>Removes a single instance of the specified element from this deque. If the deque does not contain the element, it is unchanged. More formally, removes the first element e such that o.equals(e) (if such an element exists). Returns true if this deque contained the specified element (or equivalently, if this deque changed as a result of the call).</description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -124,31 +124,31 @@ Most ArrayDeque operations run in amortized constant time. Exceptions include re
         <methods>
             <method>
                 <type>Access</type>
-                <value>peek</value>
-                <description>O(1) - Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.</description>
+                <value>peek</value><bigo>O(1)</bigo>
+                <description>Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.</description>
                 <params>
                 </params>
             </method>
             <method>
                 <type>Search</type>
-                <value>contains</value>
-                <description>O(n) - Returns true if this queue contains the specified element. More formally, returns true if and only if this queue contains at least one element e such that o.equals(e).</description>
+                <value>contains</value><bigo>O(n)</bigo>
+                <description>Returns true if this queue contains the specified element. More formally, returns true if and only if this queue contains at least one element e such that o.equals(e).</description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
             </method>
             <method>
                 <type>Insertion</type>
-                <value>offer</value>
-                <description>O(log(n)) - Inserts the specified element into this priority queue.</description>
+                <value>offer</value><bigo>O(log(n))</bigo>
+                <description>Inserts the specified element into this priority queue.</description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
             </method>
             <method>
                 <type>Removal</type>
-                <value>remove</value>
-                <description>O(n) - Removes a single instance of the specified element from this queue, if it is present. More formally, removes an element e such that o.equals(e), if this queue contains one or more such elements. Returns true if and only if this queue contained the specified element (or equivalently, if this queue changed as a result of the call).</description>
+                <value>remove</value><bigo>O(n)</bigo>
+                <description>Removes a single instance of the specified element from this queue, if it is present. More formally, removes an element e such that o.equals(e), if this queue contains one or more such elements. Returns true if and only if this queue contained the specified element (or equivalently, if this queue changed as a result of the call).</description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -162,24 +162,24 @@ This class offers constant time performance for the basic operations (add, remov
         <methods>
             <method>
                 <type>Search</type>
-                <value>contains</value>
-                <description>O(1) - Returns true if this set contains the specified element. More formally, returns true if and only if this set contains an element e such that Objects.equals(o, e).</description>
+                <value>contains</value><bigo>O(1)</bigo>
+                <description>Returns true if this set contains the specified element. More formally, returns true if and only if this set contains an element e such that Objects.equals(o, e).</description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
             </method>
             <method>
                 <type>Insertion</type>
-                <value>add</value>
-                <description>O(1) - Adds the specified element to this set if it is not already present. More formally, adds the specified element e to this set if this set contains no element e2 such that Objects.equals(e, e2). If this set already contains the element, the call leaves the set unchanged and returns false.</description>
+                <value>add</value><bigo>O(1)</bigo>
+                <description>Adds the specified element to this set if it is not already present. More formally, adds the specified element e to this set if this set contains no element e2 such that Objects.equals(e, e2). If this set already contains the element, the call leaves the set unchanged and returns false.</description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
             </method>
             <method>
                 <type>Removal</type>
-                <value>remove</value>
-                <description>O(1) - Removes the specified element from this set if it is present. More formally, removes an element e such that Objects.equals(o, e), if this set contains such an element. Returns true if this set contained the element (or equivalently, if this set changed as a result of the call). (This set will not contain the element once the call returns.)</description>
+                <value>remove</value><bigo>O(1)</bigo>
+                <description>Removes the specified element from this set if it is present. More formally, removes an element e such that Objects.equals(o, e), if this set contains such an element. Returns true if this set contained the element (or equivalently, if this set changed as a result of the call). (This set will not contain the element once the call returns.)</description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -193,24 +193,24 @@ This implementation provides guaranteed log(n) time cost for the basic operation
         <methods>
             <method>
                 <type>Search</type>
-                <value>contains</value>
-                <description>O(log(n)) - Returns true if this set contains the specified element. More formally, returns true if and only if this set contains an element e such that Objects.equals(o, e).</description>
+                <value>contains</value><bigo>O(log(n))</bigo>
+                <description>Returns true if this set contains the specified element. More formally, returns true if and only if this set contains an element e such that Objects.equals(o, e).</description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
             </method>
             <method>
                 <type>Insertion</type>
-                <value>add</value>
-                <description>O(log(n)) - Adds the specified element to this set if it is not already present. More formally, adds the specified element e to this set if the set contains no element e2 such that Objects.equals(e, e2). If this set already contains the element, the call leaves the set unchanged and returns false.</description>
+                <value>add</value><bigo>O(log(n))</bigo>
+                <description>Adds the specified element to this set if it is not already present. More formally, adds the specified element e to this set if the set contains no element e2 such that Objects.equals(e, e2). If this set already contains the element, the call leaves the set unchanged and returns false.</description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
             </method>
             <method>
                 <type>Removal</type>
-                <value>remove</value>
-                <description>O(log(n)) - Removes the specified element from this set if it is present. More formally, removes an element e such that Objects.equals(o, e), if this set contains such an element. Returns true if this set contained the element (or equivalently, if this set changed as a result of the call). (This set will not contain the element once the call returns.)</description>
+                <value>remove</value><bigo>O(log(n))</bigo>
+                <description>Removes the specified element from this set if it is present. More formally, removes an element e such that Objects.equals(o, e), if this set contains such an element. Returns true if this set contained the element (or equivalently, if this set changed as a result of the call). (This set will not contain the element once the call returns.)</description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -224,25 +224,24 @@ This implementation provides constant-time performance for the basic operations 
         <methods>
             <method>
                 <type>Access</type>
-                <value>get</value>
-                <description>O(1) - Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key. 
-                More formally, if this map contains a mapping from a key k to a value v such that (key==null ? k==null : key.equals(k)), then this method returns v; otherwise it returns null. (There can be at most one such mapping.) A return value of null does not necessarily indicate that the map contains no mapping for the key; it's also possible that the map explicitly maps the key to null. The containsKey operation may be used to distinguish these two cases.</description>
+                <value>get</value><bigo>O(1)</bigo>
+                <description>Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key. More formally, if this map contains a mapping from a key k to a value v such that (key==null ? k==null : key.equals(k)), then this method returns v; otherwise it returns null. (There can be at most one such mapping.) A return value of null does not necessarily indicate that the map contains no mapping for the key; it's also possible that the map explicitly maps the key to null. The containsKey operation may be used to distinguish these two cases.</description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
             </method>
             <method>
                 <type>Search</type>
-                <value>containsValue</value>
-                <description>O(n) - Returns true if this map maps one or more keys to the specified value.</description>
+                <value>containsValue</value><bigo>O(n)</bigo>
+                <description>Returns true if this map maps one or more keys to the specified value.</description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
             </method>
             <method>
                 <type>Insertion</type>
-                <value>put</value>
-                <description>O(1) - Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.</description>
+                <value>put</value><bigo>O(1)</bigo>
+                <description>Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.</description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                     <paramsValue>java.lang.Object</paramsValue>
@@ -250,8 +249,8 @@ This implementation provides constant-time performance for the basic operations 
             </method>
             <method>
                 <type>Removal</type>
-                <value>remove</value>
-                <description>O(1) - Removes the mapping for the specified key from this map if present.</description>
+                <value>remove</value><bigo>O(1)</bigo>
+                <description>Removes the mapping for the specified key from this map if present.</description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
@@ -265,8 +264,8 @@ This implementation provides guaranteed log(n) time cost for the containsKey, ge
         <methods>
             <method>
                 <type>Access</type>
-                <value>get</value>
-                <description>O(log(n)) - Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
+                <value>get</value><bigo>O(log(n))</bigo>
+                <description>Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
 More formally, if this map contains a mapping from a key k to a value v such that key compares equal to k according to the map's ordering, then this method returns v; otherwise it returns null. (There can be at most one such mapping.) A return value of null does not necessarily indicate that the map contains no mapping for the key; it's also possible that the map explicitly maps the key to null. The containsKey operation may be used to distinguish these two cases.</description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
@@ -274,16 +273,16 @@ More formally, if this map contains a mapping from a key k to a value v such tha
             </method>
             <method>
                 <type>Search</type>
-                <value>containsValue</value>
-                <description>O(n) - Returns true if this map maps one or more keys to the specified value. More formally, returns true if and only if this map contains at least one mapping to a value v such that (value==null ? v==null : value.equals(v)). This operation will probably require time linear in the map size for most implementations.</description>
+                <value>containsValue</value><bigo>O(n)</bigo>
+                <description>Returns true if this map maps one or more keys to the specified value. More formally, returns true if and only if this map contains at least one mapping to a value v such that (value==null ? v==null : value.equals(v)). This operation will probably require time linear in the map size for most implementations.</description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>
             </method>
             <method>
                 <type>Insertion</type>
-                <value>put</value>
-                <description>O(log(n)) - Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.</description>
+                <value>put</value><bigo>O(log(n))</bigo>
+                <description>Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.</description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                     <paramsValue>java.lang.Object</paramsValue>
@@ -291,8 +290,8 @@ More formally, if this map contains a mapping from a key k to a value v such tha
             </method>
             <method>
                 <type>Removal</type>
-                <value>remove</value>
-                <description>O(log(n)) - Removes the mapping for this key from this TreeMap if present.</description>
+                <value>remove</value><bigo>O(log(n))</bigo>
+                <description>Removes the mapping for this key from this TreeMap if present.</description>
                 <params>
                     <paramsValue>java.lang.Object</paramsValue>
                 </params>

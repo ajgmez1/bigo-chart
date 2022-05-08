@@ -44,7 +44,7 @@ public class CollectionHandler extends DefaultHandler {
                 break;
         }
     }
- 
+
     @Override
     public void endElement(String uri, String lName, String qName) throws SAXException {
         switch (qName) {
@@ -56,6 +56,9 @@ public class CollectionHandler extends DefaultHandler {
                 break;
             case "value":
                 mp.setName(elementValue);
+                break;
+            case "bigo":
+                mp.setBigO(elementValue);
                 break;
             case "description":
                 if (methodsXml) {

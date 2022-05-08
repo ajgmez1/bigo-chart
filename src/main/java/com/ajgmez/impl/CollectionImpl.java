@@ -39,6 +39,7 @@ public class CollectionImpl {
                 JSONObject mp = new JSONObject();
                 mp.put("type", methodAndParams.getType());
                 mp.put("name", methodAndParams.getName());
+                mp.put("bigo", methodAndParams.getBigO());
                 mp.put("description", methodAndParams.getDescription());
 
                 JSONArray p = new JSONArray();
