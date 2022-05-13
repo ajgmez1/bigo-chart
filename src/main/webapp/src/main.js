@@ -116,8 +116,8 @@
                 form.color = color.value;
             };
             submit.onclick = (e) => {
-                if (submit.hasAttribute('disabled')) return;
-                disable(true, [submit, inputSize, testAll, dataPoint]);
+                if (!e.bulk && submit.hasAttribute('disabled')) return;
+                disableAll(true);
 
                 return Helper.request('api/collection/test', {
                     method: 'POST',
@@ -141,9 +141,8 @@
 
                     if (!e.bulk) {
                         chart.update();
-                        disable(false, [submit]);
                         chart.options.animation.onComplete = () => {
-                            disable(false, [inputSize, testAll, dataPoint]);
+                            disableAll(false);
                         }
                     }
                 });
@@ -219,21 +218,28 @@
                 }
             });
         };
+        const disableAll = (d) => {
+            const submits = config.forms.map((f) => f.querySelector('[name=submit]'));
+            const deletes = config.forms.map((f) => f.querySelector('[name=delete]'));    
+            disable(d, [ ...submits, ...deletes, inputSize, testAll, dataPoint, addForm]);
+            if (!d) {
+                disable(config.next === config.max, [addForm]);
+            }
+        };
         const setRangeLabel = (label, range) => {
             label.textContent = `${label.name} (${range.value})`;
         };
         const testAllFn = () => {
-            const reqs = [], fields = [];
+            const reqs = [];
             config.forms.forEach((f) => {
                 var submit = f.querySelector('[name=submit]');
                 reqs.push(submit.onclick);
-                fields.push(submit);
             });
 
             Promise.all(reqs.map((req) => req({ bulk: true }))).then(() => {
                 chart.update();
                 chart.options.animation.onComplete = () => {
-                    disable(false, fields.concat([testAll, inputSize, dataPoint]));
+                    disableAll(false);
                 }
             });
         };
